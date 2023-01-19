@@ -15,3 +15,17 @@ class BasePage():
         except (NoSuchElementException):
             return False
         return True
+
+    def is_element_present_register_form(self, how, what):
+        try:
+            self.browser.find_element(how, what)
+        except (NoSuchElementException):
+            return False
+        return True
+
+    def is_element_present_login_form(self, how, what):
+        try:
+            self.browser.find_element(how, what)
+        except (NoSuchElementException):
+            return False
+        return True
