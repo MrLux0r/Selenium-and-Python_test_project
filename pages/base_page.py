@@ -3,7 +3,7 @@ from selenium.common.exceptions import NoAlertPresentException
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from .locators import BasePageLocators
+from .locators import BasePageLocators, AddLinkBasketLocators
 import math
 
 
@@ -16,6 +16,10 @@ class BasePage():
 
     def open(self):
         return self.browser.get(self.url)
+
+    def go_to_basket_page(self):
+        link = self.browser.find_element(*AddLinkBasketLocators.ADD_LINK_BASKET)
+        link.click()
 
     def go_to_login_page(self):
         link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)

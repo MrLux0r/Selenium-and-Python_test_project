@@ -15,5 +15,11 @@ class AddLinkLocators():
     ADD_LINK = (By.CSS_SELECTOR, "#add_to_basket_form .btn.btn-lg.btn-primary.btn-add-to-basket")
 
 
+class AddLinkBasketLocators():
+    ADD_LINK_BASKET = (By.CSS_SELECTOR, ".btn-group .btn.btn-default")
+    BASKET = (By.CSS_SELECTOR, "#content_inner")
+
+
+
 class ProductPageLocators():
     SUCCESS_MESSAGE = (By.CSS_SELECTOR, ".alert.alert-safe.alert-noicon.alert-success.fade.in")
