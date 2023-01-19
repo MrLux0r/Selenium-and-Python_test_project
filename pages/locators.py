@@ -10,5 +10,9 @@ class LoginPageLocators():
     FORM_LOGIN = (By.CSS_SELECTOR, "#login_form")
 
 
-class PageObjectLocators():
-    ADD_LINK = (By.CSS_SELECTOR,"#add_to_basket_form")
+class AddLinkLocators():
+    ADD_LINK = (By.CSS_SELECTOR, "#add_to_basket_form .btn.btn-lg.btn-primary.btn-add-to-basket")
+
+
+class ProductPageLocators():
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, ".alert.alert-safe.alert-noicon.alert-success.fade.in")
