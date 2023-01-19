@@ -8,3 +8,6 @@ class MainPageLocators():
 class LoginPageLocators():
     FORM_REGISTER = (By.CSS_SELECTOR, "#register_form")
     FORM_LOGIN = (By.CSS_SELECTOR, "#login_form")
+
+class PageObjectLocators():
+    ADD_LINK = (By.CSS_SELECTOR,"#add_to_basket_form")
