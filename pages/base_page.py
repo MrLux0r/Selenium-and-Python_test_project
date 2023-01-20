@@ -4,8 +4,9 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from .locators import BasePageLocators, AddLinkBasketLocators
+from selenium.webdriver.common.keys import Keys
 import math
-
+import time
 
 
 class BasePage():
@@ -13,6 +14,28 @@ class BasePage():
         self.browser = browser
         self.url = url
         self.browser.implicitly_wait(timeout)
+
+    def register_user(self):
+        email = str(time.time()) + "@fakemail.org"
+        password = 'dshfhsifdhfsuh123'
+
+        link_email = self.browser.find_element(*BasePageLocators.POLE_REGISTER_EMAIL)
+        link_email.send_keys(email)
+
+        link_parol = self.browser.find_element(*BasePageLocators.POLE_PAROL)
+        link_parol.send_keys(password)
+
+        link_double_parol = self.browser.find_element(*BasePageLocators.POLE_DOUBLE_PAROL)
+        link_double_parol.send_keys(password)
+
+        self.browser.find_element(*BasePageLocators.SCROL_END).send_keys(Keys.END)
+        time.sleep(3)
+        button = self.browser.find_element(*BasePageLocators.BUTTON_REGISTER)
+        button.click()
+        time.sleep(3)
+
+        text_after_register = self.browser.find_element(*BasePageLocators.REGISTER_TEXT).text
+        assert text_after_register == "Thanks for registering!", "Регистрация не удалась"
 
     def open(self):
         return self.browser.get(self.url)
@@ -24,6 +47,10 @@ class BasePage():
     def go_to_login_page(self):
         link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
         link.click()
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
+                                                                     " probably unauthorised user"
 
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
